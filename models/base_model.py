@@ -1,17 +1,51 @@
 #!/usr/bin/python3
 """
-Module for the BaseModel class
+BaseModel Module
+
+This module defines the BaseModel class, which serves as the parent class
+for all other classes used in the AirBnB clone project.
+It handles the initialization, serialization, and deserialization of instances.
+
+Classes:
+- BaseModel: The base class for all objects in the AirBnB clone project.
+
+Attributes:
+- id (str): A unique identifier generated for each instance.
+- created_at (datetime): The timestamp indicating the instance's creation time.
+- updated_at (datetime): The timestamp indicating the instance's last update time.
+
+Methods:
+- __init__(self, *args, **kwargs): The constructor for BaseModel instances.
+- __str__(self): Returns a string representation of the instance.
+- save(self): Updates the instance's updated_at
+attribute and saves the instance to a JSON file.
+- to_dict(self): Returns a dictionary
+representation of the instance for serialization.
+
+Usage:
+from models.base_model import BaseModel
+
+# Instantiate BaseModel
+base_model = BaseModel()
+
+# Perform operations on the instance
+base_model.save()
+base_model_dict = base_model.to_dict()
+
 """
 import uuid
 from datetime import datetime
 
 class BaseModel:
     """
-    BaseModel class that defines all common attributes/methods for other classes
+    The BaseModel class defines all common attributes/methods for other classes.
     """
     def __init__(self, *args, **kwargs):
         """
-        Initializes a new instance of the BaseModel class
+        Constructor for BaseModel class. Initializes instance
+        attributes based on provided
+        keyword arguments or generates default values for id, created_at,
+        and updated_at.
         """
         if kwargs:
             for key, value in kwargs.items():
@@ -25,19 +59,21 @@ class BaseModel:
 
     def __str__(self):
         """
-        Returns the string representation of the BaseModel instance
+        Returns a string representation of the instance,
+        including its class name, id, and attributes.
         """
-        return "[{}] ({}) {}".format(self.__class__.__name__, self.id, self.__dict__)
+        return f"[{self.__class__.__name__}] ({self.id}) {self.__dict__}"
 
     def save(self):
         """
-        Updates the public instance attribute updated_at with the current datetime
+        Updates the 'updated_at' attribute to the current datetime.
         """
         self.updated_at = datetime.now()
 
     def to_dict(self):
         """
-        Returns a dictionary containing all keys/values of __dict__ of the instance
+        Converts the instance attributes into a dictionary representation
+        with 'simple object type'.
         """
         obj_dict = self.__dict__.copy()
         obj_dict['__class__'] = self.__class__.__name__
