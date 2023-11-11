@@ -1,18 +1,64 @@
 #!/usr/bin/python3
-"""
-Module for testing the BaseModel class
-"""
+import unittest
+import os
 from models.base_model import BaseModel
+from models.__init__ import storage
+from console import HBNBCommand
 
-my_model = BaseModel()
-my_model.name = "My First Model"
-my_model.my_number = 89
-print(my_model)
-my_model.save()
-print(my_model)
-my_model_json = my_model.to_dict()
-print(my_model_json)
-print("JSON of my_model:")
-for key in my_model_json.keys():
-    print("\t{}: ({}) - {}".format(key, type(my_model_json[key]), my_model_json[key]))
+class TestBaseModel(unittest.TestCase):
+    def setUp(self):
+        """Set up a clean testing environment."""
+        self.base_model = BaseModel()
+        self.console = HBNBCommand()
+        self.test_id = None
+
+    def tearDown(self):
+        """Clean up resources after testing."""
+        if self.test_id:
+            path = "file.json"
+            with open(path, "r") as file:
+                content = file.read()
+            storage.reload()
+            objects_dict = storage.all()
+            objects_dict.pop("BaseModel." + self.test_id, None)
+            with open(path, "w") as file:
+                file.write(storage.all_to_json())
+
+    def test_create_base_model(self):
+        """Test creating a new BaseModel instance."""
+        self.console.onecmd("create BaseModel")
+        self.assertIn("BaseModel", storage.all())
+
+    def test_show_base_model(self):
+        """Test showing details of a BaseModel instance."""
+        self.console.onecmd("create BaseModel")
+        obj_id = list(storage.all("BaseModel").keys())[0]
+        output = self.console.onecmd(f"show BaseModel {obj_id}")
+        self.assertTrue(obj_id in output)
+
+    def test_destroy_base_model(self):
+        """Test destroying a BaseModel instance."""
+        self.console.onecmd("create BaseModel")
+        obj_id = list(storage.all("BaseModel").keys())[0]
+        self.console.onecmd(f"destroy BaseModel {obj_id}")
+        self.assertNotIn(obj_id, storage.all("BaseModel"))
+
+    def test_all_base_model(self):
+        """Test listing all BaseModel instances."""
+        self.console.onecmd("create BaseModel")
+        output = self.console.onecmd("all BaseModel")
+        obj_id = list(storage.all("BaseModel").keys())[0]
+        self.assertTrue(obj_id in output)
+
+    def test_update_base_model(self):
+        """Test updating a BaseModel instance."""
+        self.console.onecmd("create BaseModel")
+        obj_id = list(storage.all("BaseModel").keys())[0]
+        self.test_id = obj_id
+        self.console.onecmd(f"update BaseModel {obj_id} name 'Test Model'")
+        updated_base_model = storage.all("BaseModel")[obj_id]
+        self.assertEqual(updated_base_model.name, "Test Model")
+
+if __name__ == "__main__":
+    unittest.main()
 

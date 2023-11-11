@@ -1,28 +1,57 @@
 #!/usr/bin/python3
-"""
-Module for testing the creation of BaseModel from dictionary
-"""
+
+import unittest
+import os
 from models.base_model import BaseModel
+from models.__init__ import storage
+from console import HBNBCommand
 
-my_model = BaseModel()
-my_model.name = "My_First_Model"
-my_model.my_number = 89
-print(my_model.id)
-print(my_model)
-print(type(my_model.created_at))
-print("--")
-my_model_json = my_model.to_dict()
-print(my_model_json)
-print("JSON of my_model:")
-for key in my_model_json.keys():
-    print("\t{}: ({}) - {}".format(key, type(my_model_json[key]), my_model_json[key]))
+class TestBaseModelDict(unittest.TestCase):
+    def setUp(self):
+        """Set up a clean testing environment."""
+        self.base_model = BaseModel()
+        self.console = HBNBCommand()
+        self.test_id = None
 
-print("--")
-my_new_model = BaseModel(**my_model_json)
-print(my_new_model.id)
-print(my_new_model)
-print(type(my_new_model.created_at))
+    def tearDown(self):
+        """Clean up resources after testing."""
+        if self.test_id:
+            path = "file.json"
+            with open(path, "r") as file:
+                content = file.read()
+            storage.reload()
+            objects_dict = storage.all()
+            objects_dict.pop("BaseModel." + self.test_id, None)
+            with open(path, "w") as file:
+                file.write(storage.all_to_json())
 
-print("--")
-print(my_model is my_new_model)
+    def test_to_dict_base_model(self):
+        """Test the to_dict() method of BaseModel."""
+        obj_id = self.base_model.id
+        expected_keys = ['id', 'created_at', 'updated_at', '__class__']
+        base_model_dict = self.base_model.to_dict()
+
+        self.assertEqual(set(base_model_dict.keys()), set(expected_keys))
+        self.assertEqual(base_model_dict['__class__'], 'BaseModel')
+        self.assertEqual(base_model_dict['id'], obj_id)
+
+    def test_save_reload_to_dict(self):
+        """Test saving, reloading, and checking to_dict() consistency."""
+        self.console.onecmd("create BaseModel")
+        obj_id = list(storage.all("BaseModel").keys())[0]
+        self.test_id = obj_id
+        path = "file.json"
+        
+        with open(path, "r") as file:
+            content = file.read()
+
+        storage.reload()
+        loaded_objects_dict = storage.all()
+        loaded_base_model_dict = loaded_objects_dict["BaseModel." + obj_id].to_dict()
+
+        self.assertEqual(loaded_base_model_dict['id'], obj_id)
+        self.assertEqual(loaded_base_model_dict['__class__'], 'BaseModel')
+
+if __name__ == "__main__":
+    unittest.main()
 
