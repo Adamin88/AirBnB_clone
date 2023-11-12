@@ -7,6 +7,7 @@ from console import HBNBCommand
 from unittest.mock import patch
 from models import storage
 
+
 class TestConsole(unittest.TestCase):
     def setUp(self):
         """Set up a clean testing environment."""
@@ -97,6 +98,6 @@ class TestConsole(unittest.TestCase):
         with patch('builtins.input', return_value="help update"):
             self.assertFalse(self.console.onecmd("help update"))
 
+
 if __name__ == "__main__":
     unittest.main()
-
