@@ -34,7 +34,7 @@ The project aims to mimic the basic functionalities of Airbnb, focusing on creat
 
 1. Clone the repository:
 
-`https://github.com/MinightDev/AirBnB_clone`
+`git clone https://github.com/MinightDev/AirBnB_clone`
 
 2. Navigate to the project directory:
 
