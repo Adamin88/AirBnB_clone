@@ -6,6 +6,7 @@ from models.city import City
 from models.__init__ import storage
 from console import HBNBCommand
 
+
 class TestCity(unittest.TestCase):
     def setUp(self):
         """Set up a clean testing environment."""
@@ -24,7 +25,7 @@ class TestCity(unittest.TestCase):
             objects_dict.pop("City." + self.test_id, None)
             with open(path, "w") as file:
                 file.write(storage.all_to_json())
-        
+
     def test_create_city(self):
         """Test creating a new City instance."""
         self.console.onecmd("create City")
@@ -60,6 +61,6 @@ class TestCity(unittest.TestCase):
         updated_city = storage.all("City")[obj_id]
         self.assertEqual(updated_city.name, "testing")
 
+
 if __name__ == "__main__":
     unittest.main()
-

@@ -6,6 +6,7 @@ from models.state import State
 from models.__init__ import storage
 from console import HBNBCommand
 
+
 class TestState(unittest.TestCase):
     def setUp(self):
         """Set up a clean testing environment."""
@@ -60,6 +61,6 @@ class TestState(unittest.TestCase):
         updated_state = storage.all("State")[obj_id]
         self.assertEqual(updated_state.name, "California")
 
+
 if __name__ == "__main__":
     unittest.main()
-
