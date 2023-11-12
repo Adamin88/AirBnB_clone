@@ -35,7 +35,6 @@ base_model_dict = base_model.to_dict()
 """
 import uuid
 from datetime import datetime
-from models.engine.file_storage import storage
 
 
 class BaseModel:
