@@ -10,7 +10,7 @@ Classes:
 Attributes:
 - id (str): A unique identifier generated for each instance.
 - created_at (datetime): The timestamp indicating the instance's creation time.
-- updated_at (datetime): The timestamp indicating the instance's last update
+- updated_at (datetime): The timestamp indicating the instance's last update time.
 
 Methods:
 - __init__(self, *args, **kwargs): The constructor for BaseModel instances.
@@ -34,12 +34,10 @@ base_model_dict = base_model.to_dict()
 import uuid
 from datetime import datetime
 
-
 class BaseModel:
     """
-    The BaseModel class defines all common attributes/methods
+    The BaseModel class defines all common attributes/methods for other classes.
     """
-
     def __init__(self, *args, **kwargs):
         """
         Constructor for BaseModel class. Initializes instance
@@ -50,9 +48,7 @@ class BaseModel:
         if kwargs:
             for key, value in kwargs.items():
                 if key == 'created_at' or key == 'updated_at':
-                    setattr(
-                        self, key, datetime.strptime(
-                            value, "%Y-%m-%dT%H:%M:%S.%f"))
+                    setattr(self, key, datetime.strptime(value, "%Y-%m-%dT%H:%M:%S.%f"))
                 elif key != '__class__':
                     setattr(self, key, value)
             return
