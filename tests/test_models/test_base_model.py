@@ -5,6 +5,7 @@ from models.base_model import BaseModel
 from models.__init__ import storage
 from console import HBNBCommand
 
+
 class TestBaseModel(unittest.TestCase):
     def setUp(self):
         """Set up a clean testing environment."""
@@ -59,6 +60,6 @@ class TestBaseModel(unittest.TestCase):
         updated_base_model = storage.all("BaseModel")[obj_id]
         self.assertEqual(updated_base_model.name, "Test Model")
 
+
 if __name__ == "__main__":
     unittest.main()
-

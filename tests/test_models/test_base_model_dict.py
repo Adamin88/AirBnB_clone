@@ -6,6 +6,7 @@ from models.base_model import BaseModel
 from models.__init__ import storage
 from console import HBNBCommand
 
+
 class TestBaseModelDict(unittest.TestCase):
     def setUp(self):
         """Set up a clean testing environment."""
@@ -41,17 +42,18 @@ class TestBaseModelDict(unittest.TestCase):
         obj_id = list(storage.all("BaseModel").keys())[0]
         self.test_id = obj_id
         path = "file.json"
-        
+
         with open(path, "r") as file:
             content = file.read()
 
         storage.reload()
         loaded_objects_dict = storage.all()
-        loaded_base_model_dict = loaded_objects_dict["BaseModel." + obj_id].to_dict()
+        loaded_base_model_dict = loaded_objects_dict["BaseModel." +
+                                                     obj_id].to_dict()
 
         self.assertEqual(loaded_base_model_dict['id'], obj_id)
         self.assertEqual(loaded_base_model_dict['__class__'], 'BaseModel')
 
+
 if __name__ == "__main__":
     unittest.main()
-
