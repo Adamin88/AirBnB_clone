@@ -6,6 +6,7 @@ from models.user import User
 from models.__init__ import storage
 from console import HBNBCommand
 
+
 class TestUser(unittest.TestCase):
     def setUp(self):
         """Set up a clean testing environment."""
@@ -60,6 +61,6 @@ class TestUser(unittest.TestCase):
         updated_user = storage.all("User")[obj_id]
         self.assertEqual(updated_user.name, "John Doe")
 
+
 if __name__ == "__main__":
     unittest.main()
-

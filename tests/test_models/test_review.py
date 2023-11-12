@@ -6,6 +6,7 @@ from models.review import Review
 from models.__init__ import storage
 from console import HBNBCommand
 
+
 class TestReview(unittest.TestCase):
     def setUp(self):
         """Set up a clean testing environment."""
@@ -24,7 +25,7 @@ class TestReview(unittest.TestCase):
             objects_dict.pop("Review." + self.test_id, None)
             with open(path, "w") as file:
                 file.write(storage.all_to_json())
-        
+
     def test_create_review(self):
         """Test creating a new Review instance."""
         self.console.onecmd("create Review")
@@ -60,6 +61,6 @@ class TestReview(unittest.TestCase):
         updated_review = storage.all("Review")[obj_id]
         self.assertEqual(updated_review.text, "Great review")
 
+
 if __name__ == "__main__":
     unittest.main()
-
