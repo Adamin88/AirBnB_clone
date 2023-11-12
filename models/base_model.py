@@ -1,4 +1,6 @@
-seModel Module
+#!/usr/bin/python3
+"""
+BaseModel Module
 
 This module defines the BaseModel class, which serves as the parent class
 for all other classes used in the AirBnB clone project.
@@ -10,7 +12,7 @@ Classes:
 Attributes:
 - id (str): A unique identifier generated for each instance.
 - created_at (datetime): The timestamp indicating the instance's creation time.
-- updated_at (datetime): The timestamp indicating the instance's last update time.
+- updated_at (datetime): The timestamp indicating the instance's last update
 
 Methods:
 - __init__(self, *args, **kwargs): The constructor for BaseModel instances.
@@ -34,10 +36,12 @@ base_model_dict = base_model.to_dict()
 import uuid
 from datetime import datetime
 
+
 class BaseModel:
     """
-    The BaseModel class defines all common attributes/methods for other classes.
+    The BaseModel class defines all common attributes/methods
     """
+
     def __init__(self, *args, **kwargs):
         """
         Constructor for BaseModel class. Initializes instance
@@ -48,7 +52,9 @@ class BaseModel:
         if kwargs:
             for key, value in kwargs.items():
                 if key == 'created_at' or key == 'updated_at':
-                    setattr(self, key, datetime.strptime(value, "%Y-%m-%dT%H:%M:%S.%f"))
+                    setattr(
+                        self, key, datetime.strptime(
+                            value, "%Y-%m-%dT%H:%M:%S.%f"))
                 elif key != '__class__':
                     setattr(self, key, value)
             return
@@ -78,4 +84,3 @@ class BaseModel:
         obj_dict['created_at'] = self.created_at.isoformat()
         obj_dict['updated_at'] = self.updated_at.isoformat()
         return obj_dict
-
