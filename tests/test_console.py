@@ -1,8 +1,5 @@
 #!/usr/bin/python3
 
-import console
-import inspect
-import pep8
 import unittest
 import sys
 from io import StringIO
