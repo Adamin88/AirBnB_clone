@@ -1,7 +1,7 @@
 # AirBnB Clone - The Console
 
 <p align="center">
-  <img src="https://s3.amazonaws.com/alx-intranet.hbtn.io/uploads/medias/2018/6/65f4a1dd9c51265f49d0.png?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIARDDGGGOUSBVO6H7D%2F20231114%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Date=20231114T144335Z&X-Amz-Expires=86400&X-Amz-SignedHeaders=host&X-Amz-Signature=5c045da501c3800a1728674a44ca9c0037951700671bf56d1d3599543af22609" alt="AirBnB Clone Logo" width="200">
+  <img src="https://cdn.discordapp.com/attachments/551050418541821992/1173998974445834391/65f4a1dd9c51265f49d0.png?ex=6565febf&is=655389bf&hm=34b07b21b53af483bfd5e4a1092e17d00f5b381967a79f93095b634bb6437c78&" alt="AirBnB Clone Logo" width="200">
 </p>
 
 **Project:** 0x00. AirBNB Clone - The Console | **By:** Guillaume
