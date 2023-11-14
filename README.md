@@ -1,5 +1,7 @@
 # AirBnB Clone - The Console
 
+![AirBnB Clone](https://s3.amazonaws.com/alx-intranet.hbtn.io/uploads/medias/2018/6/65f4a1dd9c51265f49d0.png?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIARDDGGGOUSBVO6H7D%2F20231114%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Date=20231114T144335Z&X-Amz-Expires=86400&X-Amz-SignedHeaders=host&X-Amz-Signature=5c045da501c3800a1728674a44ca9c0037951700671bf56d1d3599543af22609)
+
 **Project:** 0x00. AirBNB Clone - The Console | **By:** Guillaume
 
 **Weight:** 5 | **Project Duration:** Nov 6, 2023 4:00 AM - Nov 13, 2023 4:00 AM 
