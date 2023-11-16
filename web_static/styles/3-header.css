@@ -1,0 +1,21 @@
+header {
+    background-color: #ffffff;
+    height: 70px;
+    width: 100%;
+    border-bottom: 1px solid #CCCCCC;
+    display: flex;
+    justify-content: left;
+    align-items: center;
+    margin-bottom: 30px;
+}
+
+.logo {
+    height: 100px;
+    width: 100px;
+    background-image: url('../images/logo.png');
+    background-size: contain;
+    background-repeat: no-repeat;
+    margin-left: 20px;
+    background-position-y: center;
+}
+
